@@ -1,0 +1,68 @@
+services:
+  frontend:
+    build:
+      context: ./demo
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=mariadb
+      - DB_USER=investoriq
+      - DB_PASSWORD=your_password_here
+      - DB_NAME=investoriq_db
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - mariadb
+      - rabbitmq
+    networks:
+      - app-network
+
+  mariadb:
+    image: mariadb:10.6
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password_here
+      - MYSQL_DATABASE=investoriq_db
+      - MYSQL_USER=investoriq
+      - MYSQL_PASSWORD=your_password_here
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - app-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"   # AMQP protocol port
+      - "15672:15672" # Management UI port
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - app-network
+
+volumes:
+  mariadb_data:
+  rabbitmq_data:
+
+networks:
+  app-network:
+    driver: bridge 

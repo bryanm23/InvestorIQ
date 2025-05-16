@@ -1,0 +1,8 @@
+TO CHECK STATUS OF RMQ WATCHDOG
+
+sudo systemctl status rmq-ha-watchdog
+
+TO STOP IT
+
+sudo systemctl stop rmq-ha-watchdog
+

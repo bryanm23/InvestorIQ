@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "start-db": "systemctl start mysql",
+        "stop-db": "systemctl stop mysql",
+        "status-db": "systemctl status mysql"
+
+}
+}

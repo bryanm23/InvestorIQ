@@ -1,0 +1,152 @@
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background: #111111;
+  overflow-x: hidden;
+}
+
+.landing-taskbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  background: rgba(26, 26, 26, 0.7);
+  border-bottom: 1px solid rgba(0, 195, 255, 0.3);
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(5px);
+  height: 70px;
+  width: 100%;
+}
+
+.taskbar-left, .taskbar-center, .taskbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.taskbar-left {
+  padding-left: 50px;
+  width: 25%;
+  justify-content: flex-start;
+}
+
+.taskbar-center {
+  width: 50%;
+  justify-content: center;
+}
+
+.taskbar-right {
+  padding-right: 50px;
+  width: 25%;
+  gap: 20px;
+  justify-content: flex-end;
+}
+
+.taskbar-logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #00c3ff;
+  text-shadow: 0 0 10px rgba(0, 195, 255, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.taskbar-description {
+  color: #d0d0d0;
+  font-size: 1.2rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.taskbar-button {
+  padding: 10px 20px;
+  background-color: rgba(0, 195, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(0, 195, 255, 0.5);
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 195, 255, 0.3);
+  text-decoration: none;
+  display: inline-block;
+  min-width: 100px;
+  text-align: center;
+}
+
+.taskbar-button:hover {
+  background-color: rgba(0, 195, 255, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 195, 255, 0.6);
+}
+
+.landing-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px); /* Adjust for taskbar height */
+  width: 100%;
+  color: #d0d0d0;
+  text-align: center;
+  overflow: hidden;
+  flex: 1;
+}
+  
+  .landing-header {
+    position: relative;
+    z-index: 1; /* Place above the Spline background */
+    max-width: 600px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+    border-radius: 10px;
+  }
+  
+  .landing-header h1 {
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+  }
+  
+  .landing-header p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    text-decoration: none;
+    background: #888888;
+    color: black;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .btn:hover {
+    background: #ffffff;
+    box-shadow: 0px 0px 15px #ffffff;
+    transform: scale(1.05);
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    border: 2px solid #aaaaaa;
+    color: #ffffff;
+  }
+  
+  .btn-secondary:hover {
+    background: #aaaaaa;
+    color: black;
+    box-shadow: 0px 0px 15px #aaaaaa;
+  }

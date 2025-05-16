@@ -1,0 +1,217 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: #111111;
+  color: #d0d0d0;
+  padding: 20px;
+  overflow-y: auto;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.profile-header h1 {
+  margin-left: 20px;
+  text-shadow: 0 0 10px rgba(0, 195, 255, 0.8), 0 0 20px rgba(0, 195, 255, 0.5);
+  color: #ffffff;
+}
+
+.back-button {
+  background-color: rgba(0, 195, 255, 0.2);
+  border: 1px solid rgba(0, 195, 255, 0.5);
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 195, 255, 0.3);
+}
+
+.back-button:hover {
+  background-color: rgba(0, 195, 255, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 195, 255, 0.6);
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.avatar-placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  background-color: rgba(26, 26, 26, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  border: 2px solid rgba(0, 195, 255, 0.5);
+  box-shadow: 0 0 15px rgba(0, 195, 255, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.avatar-placeholder span {
+  font-size: 2.5rem;
+  color: #00c3ff;
+  text-shadow: 0 0 10px rgba(0, 195, 255, 0.5);
+}
+
+.upload-button {
+  background-color: rgba(0, 195, 255, 0.2);
+  border: 1px solid rgba(0, 195, 255, 0.5);
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 195, 255, 0.3);
+}
+
+.upload-button:hover {
+  background-color: rgba(0, 195, 255, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 195, 255, 0.6);
+}
+
+.profile-form {
+  width: 100%;
+  max-width: 600px;
+}
+
+.form-section {
+  margin-bottom: 30px;
+  background: rgba(26, 26, 26, 0.7);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 195, 255, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.form-section h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgba(0, 195, 255, 0.3);
+  padding-bottom: 10px;
+  color: #00c3ff;
+  text-shadow: 0 0 10px rgba(0, 195, 255, 0.5);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  background: rgba(42, 42, 42, 0.6);
+  border: 1px solid rgba(0, 195, 255, 0.5);
+  border-radius: 5px;
+  color: #d0d0d0;
+  padding: 10px;
+  width: 100%;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 195, 255, 0.3);
+}
+
+.form-group input:focus {
+  border-color: rgba(0, 195, 255, 0.8);
+  background-color: rgba(58, 58, 58, 0.6);
+  box-shadow: 0 0 10px rgba(0, 195, 255, 0.5);
+}
+
+.form-group.checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.form-group.checkbox input {
+  margin-right: 10px;
+}
+
+.save-button {
+  background-color: rgba(0, 195, 255, 0.2);
+  border: 1px solid rgba(0, 195, 255, 0.5);
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  width: 100%;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 195, 255, 0.3);
+}
+
+.save-button:hover {
+  background-color: rgba(0, 195, 255, 0.4);
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(0, 195, 255, 0.6);
+}
+
+.save-button:disabled {
+  background-color: #555555;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.message {
+  width: 100%;
+  max-width: 600px;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.message.success {
+  background-color: rgba(39, 174, 96, 0.2);
+  color: #2ecc71;
+  border: 1px solid #27ae60;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+}
+
+.message.error {
+  background-color: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+  border: 1px solid #c0392b;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 10px rgba(231, 76, 60, 0.3);
+}

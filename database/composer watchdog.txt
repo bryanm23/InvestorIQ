@@ -1,0 +1,11 @@
+**to stop mariadb makeshift automatic composer
+
+sudo systemctl stop mariadb-ha-watchdog
+
+
+**STATUS checks processes, will try to start, similar to an automatic composer
+sudo systemctl status mariadb-ha-watchdog
+
+**CHECK c4.sh composer cluster checkups
+./c4.sh
+

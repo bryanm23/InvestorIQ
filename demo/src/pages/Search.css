@@ -1,0 +1,394 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #111111;
+}
+
+.search-page {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.search-container, .map-container {
+  flex: 1;
+  height: 100vh;
+  display: flex;
+  min-width: 50%;
+  max-width: 50%;
+  position: relative;
+}
+
+.search-container {
+  background-color: rgba(10, 10, 10, 0.7);
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  box-sizing: border-box;
+  overflow-y: hidden; /* Changed from auto to hidden to prevent double scrollbars */
+  position: relative;
+  z-index: 2;
+  display: flex; /* Ensure flex is explicitly set */
+}
+
+.search-spline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.search-header {
+  width: 100%;
+  border-bottom: 2px solid rgba(0, 195, 255, 0.5);
+  padding-bottom: 15px;
+  position: relative; /* Change from sticky to relative */
+  background-color: rgba(10, 10, 10, 0.9);
+  overflow: hidden;
+  z-index: 10;
+  padding-top: 10px;
+}
+
+.search-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.dashboard-btn {
+  background-color: rgba(0, 195, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(0, 195, 255, 0.5);
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 195, 255, 0.3);
+  margin-right: 15px;
+}
+
+.dashboard-btn:hover {
+  background-color: rgba(0, 195, 255, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 195, 255, 0.6);
+}
+
+.search-container h1 {
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 1.8rem;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(0, 195, 255, 0.8), 0 0 20px rgba(0, 195, 255, 0.5);
+  margin-bottom: 5px;
+  position: relative;
+  z-index: 2;
+}
+
+.search-form {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 15px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.search-container .spline-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.search-form input {
+  flex: 1 1 calc(33% - 10px);
+  min-width: 150px;
+  background: transparent;
+  border: 1px solid rgba(0, 195, 255, 0.5);
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 195, 255, 0.3);
+}
+
+.search-form input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-form input:focus {
+  border-color: rgba(0, 195, 255, 0.8);
+  box-shadow: 0 0 10px rgba(0, 195, 255, 0.5);
+}
+
+.search-form button {
+  flex: 1 1 100%;
+  background-color: rgba(0, 195, 255, 0.2);
+  border: 1px solid rgba(0, 195, 255, 0.5);
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 195, 255, 0.3);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.search-form button:hover {
+  background-color: rgba(0, 195, 255, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 195, 255, 0.6);
+}
+
+/* Updated property list to use grid */
+.property-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  flex: 1; /* Expand to fill remaining space */
+  overflow-y: auto;
+  position: relative;
+  z-index: 4;
+  background-color: rgba(10, 10, 10, 0.5);
+  margin-top: 10px;
+  border-radius: 8px; /* Adds rounded corners to the container */
+  border: 1px solid rgba(0, 195, 255, 0.3); /* Adds a subtle border */
+}
+
+/* Enhanced property card styles */
+.property-card {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(26, 26, 26, 0.8);
+  padding: 15px;
+  border: 1px solid rgba(0, 195, 255, 0.3);
+  border-radius: 8px;
+  width: 100%;
+  height: 300px;
+  margin: 0;
+  gap: 15px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+  backdrop-filter: blur(5px);
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.property-card:hover {
+  box-shadow: 0px 0px 20px 5px rgba(0, 195, 255, 0.4);
+  transform: translateY(-5px);
+  cursor: pointer;
+  border-color: rgba(0, 195, 255, 0.6);
+}
+
+.property-card:active {
+  box-shadow: 0px 0px 30px 10px rgba(0, 195, 255, 0.7);
+}
+
+/* Property info section with improved typography */
+.property-info {
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 5px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.property-info h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #00c3ff;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+.property-info p {
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+.property-info strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Image container with improved styling */
+.property-image-container {
+  height: 180px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.property-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+.property-card:hover .property-image {
+  transform: scale(1.05);
+}
+
+.no-streetview {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2a2a2a;
+}
+
+/* Save property button styling */
+.save-property-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 195, 255, 0.7);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 10;
+  transition: all 0.2s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.save-property-btn:hover {
+  background-color: rgba(0, 195, 255, 0.9);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 195, 255, 0.5);
+}
+
+.save-property-btn.saved {
+  background-color: #2a41e8;
+  box-shadow: 0 0 10px rgba(42, 65, 232, 0.5);
+}
+
+.save-property-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Add animation for save button */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.save-property-btn.saved {
+  animation: pulse 2s infinite;
+}
+
+/* Status messages */
+.loading, .error, .no-results {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  color: #d0d0d0;
+  font-size: 16px;
+}
+
+.error {
+  color: #ff5555;
+}
+
+/* Map container styling */
+.map-container {
+  background-color: #222222;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  flex: 1;
+  min-width: 50%;
+  max-width: 50%;
+  overflow: hidden;
+}
+
+.map-container > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 992px) {
+  .search-page {
+    flex-direction: column;
+  }
+  
+  .search-container, .map-container {
+    min-width: 100%;
+    max-width: 100%;
+    height: 50vh;
+  }
+  
+  .property-list {
+    max-height: calc(50vh - 200px);
+  }
+}
+
+@media (max-width: 576px) {
+  .property-card {
+    height: auto;
+    min-height: 320px;
+  }
+  
+  .property-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .search-form input {
+    flex: 1 1 100%;
+  }
+}
